@@ -1,0 +1,239 @@
+{
+  "properties": {
+    "company_id": {
+      "title": "Company Id",
+      "type": "string"
+    },
+    "alias": {
+      "description": "Code name shown before NDA (never the legal name)",
+      "title": "Alias",
+      "type": "string"
+    },
+    "country": {
+      "title": "Country",
+      "type": "string"
+    },
+    "sector": {
+      "title": "Sector",
+      "type": "string"
+    },
+    "business_model": {
+      "default": "",
+      "title": "Business Model",
+      "type": "string"
+    },
+    "description": {
+      "default": "",
+      "title": "Description",
+      "type": "string"
+    },
+    "source": {
+      "default": "manual",
+      "description": "manual | partner:<name> | registry | off_market_agent",
+      "title": "Source",
+      "type": "string"
+    },
+    "revenue_usd_m": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Revenue Usd M"
+    },
+    "ebitda_usd_m": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Ebitda Usd M"
+    },
+    "ev_usd_m": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Ev Usd M"
+    },
+    "ebitda_margin_pct": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Ebitda Margin Pct"
+    },
+    "fcf_conversion_pct": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Fcf Conversion Pct"
+    },
+    "recurring_revenue_pct": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Recurring Revenue Pct"
+    },
+    "top_customer_pct": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Top Customer Pct"
+    },
+    "capex_pct_revenue": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Capex Pct Revenue"
+    },
+    "revenue_growth_pct": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Revenue Growth Pct"
+    },
+    "years_of_financials": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Years Of Financials"
+    },
+    "second_tier_management": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Second Tier Management"
+    },
+    "owner_transition_months": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Owner Transition Months"
+    },
+    "owner_age": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Owner age is a transition-readiness signal for the COMPANY, never a searcher input",
+      "title": "Owner Age"
+    },
+    "defensibility_rating": {
+      "anyOf": [
+        {
+          "maximum": 5,
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Defensibility Rating"
+    },
+    "improvement_levers": {
+      "description": "e.g. sales, pricing, digital, ops, m&a",
+      "items": {
+        "type": "string"
+      },
+      "title": "Improvement Levers",
+      "type": "array"
+    },
+    "flags": {
+      "additionalProperties": {
+        "type": "boolean"
+      },
+      "title": "Flags",
+      "type": "object"
+    },
+    "evidence": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "field -> page/quote in source docs",
+      "title": "Evidence",
+      "type": "object"
+    }
+  },
+  "required": [
+    "company_id",
+    "alias",
+    "country",
+    "sector"
+  ],
+  "title": "CompanyProfile",
+  "type": "object"
+}

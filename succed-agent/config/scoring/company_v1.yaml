@@ -1,0 +1,70 @@
+# Company Score — v1 (search-fund target quality)
+# Each dimension scores 0..1 from structured fields via piecewise-linear rules,
+# then is weighted (weights sum to 100). Knock-outs cap or zero the score.
+# Defaults reflect Altos Andes' PUBLISHED criteria (profitable, stable cash flow,
+# low capital intensity, recurring customers, defensible, no distress, no single-
+# customer/owner dependence, EV ~US$10–30M). EBITDA bands are MODELLING HYPOTHESES.
+version: company-v1.0
+
+dimensions:
+  size_band:
+    weight: 15
+    field: ev_usd_m           # falls back to ebitda_usd_m * assumed multiple
+    # piecewise points [value, score]; linear between, flat outside
+    points: [[3, 0.0], [8, 0.6], [10, 1.0], [30, 1.0], [45, 0.5], [80, 0.0]]
+  profitability_cash:
+    weight: 15
+    parts:
+      - {field: ebitda_margin_pct, points: [[0, 0.0], [10, 0.4], [18, 0.9], [25, 1.0]], share: 0.6}
+      - {field: fcf_conversion_pct, points: [[30, 0.0], [60, 0.6], [75, 1.0]], share: 0.4}
+  revenue_quality:
+    weight: 15
+    field: recurring_revenue_pct
+    points: [[0, 0.1], [30, 0.5], [60, 0.9], [80, 1.0]]
+  concentration:
+    weight: 10
+    field: top_customer_pct
+    points: [[5, 1.0], [15, 0.85], [30, 0.3], [50, 0.0]]
+  owner_transition:
+    weight: 15
+    parts:
+      - {field: second_tier_management, bool: true, share: 0.5}
+      - {field: owner_transition_months, points: [[0, 0.2], [6, 0.8], [12, 1.0]], share: 0.3}
+      - {field: owner_age, points: [[40, 0.3], [55, 0.9], [62, 1.0]], share: 0.2}
+  capital_intensity:
+    weight: 10
+    field: capex_pct_revenue
+    points: [[2, 1.0], [5, 0.85], [10, 0.3], [15, 0.0]]
+  industry_defensibility:
+    weight: 10
+    parts:
+      - {field: revenue_growth_pct, points: [[-5, 0.0], [0, 0.4], [5, 0.8], [10, 1.0]], share: 0.5}
+      - {field: defensibility_rating, points: [[0, 0.0], [5, 1.0]], share: 0.5}   # 0–5, agent-rated with evidence
+  data_completeness:
+    weight: 10
+    computed: completeness     # share of required_fields present
+
+required_fields: [ev_usd_m, ebitda_usd_m, revenue_usd_m, ebitda_margin_pct, fcf_conversion_pct,
+                  recurring_revenue_pct, top_customer_pct, second_tier_management,
+                  owner_transition_months, capex_pct_revenue, revenue_growth_pct, years_of_financials]
+
+assumed_ev_ebitda_multiple: 6.0   # only to infer EV when missing; flagged in output
+
+# Structured rules only (no code evaluation). Either {field, op, value} or {flag}.
+knockouts:
+  - {field: ebitda_usd_m, op: "<", value: 1.0, effect: route, route: self_funded_tier,
+     reason: "EBITDA below US$1M: route to self-funded searcher tier"}
+  - {field: ebitda_margin_pct, op: "<", value: 0, effect: cap, cap: 40, reason: "Loss-making / turnaround"}
+  - {field: top_customer_pct, op: ">", value: 30, effect: cap, cap: 55, reason: "Single customer > 30% of revenue"}
+  - {flag: distressed, effect: cap, cap: 30, reason: "Distressed business (investor avoids)"}
+  - {flag: heavily_regulated, effect: cap, cap: 60, reason: "Heavily regulated industry"}
+  - {flag: owner_holds_all_relationships, effect: cap, cap: 60, reason: "Owner holds all key relationships"}
+  - {flag: startup_no_profit_history, effect: cap, cap: 30, reason: "Start-up without profit history"}
+
+confidence:
+  # interval half-width = base + spread * (1 - completeness)
+  base: 3
+  spread: 20
+  low_confidence_below_completeness: 0.6
+
+pass_threshold: 70

@@ -1,0 +1,25 @@
+# Fit Index — v1 (pairwise searcher x company)
+version: fit-v1.0
+gate:
+  searcher_min: 70
+  company_min: 70
+  # low-confidence company scores must clear the gate on their LOWER bound
+  use_lower_bound_when_low_confidence: true
+
+components:          # weights sum to 100
+  thesis_match: 35          # sector / geography / size / business model vs thesis
+  operator_match: 20        # searcher strengths vs company improvement levers
+  investor_capacity: 15     # syndicate can fund the equity check
+  quality_base: 20          # mean of searcher & company scores
+  semantic_similarity: 10   # optional: agent-provided 0..1 similarity of thesis vs company description
+
+introduce:
+  min_fit: 70
+  min_thesis_match: 0.6       # below this the pair is held, however high the other components
+  require_thesis_geography: true
+
+equity_share_of_ev: 0.5     # equity check = EV * share (HYPOTHESIS; override per deal)
+
+exclusivity:
+  max_searchers_per_company: 4
+  window_days: 21

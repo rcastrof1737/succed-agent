@@ -1,0 +1,176 @@
+{
+  "$defs": {
+    "DimensionRating": {
+      "properties": {
+        "rating": {
+          "maximum": 5,
+          "minimum": 0,
+          "title": "Rating",
+          "type": "number"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "title": "Evidence",
+          "type": "array"
+        }
+      },
+      "required": [
+        "rating"
+      ],
+      "title": "DimensionRating",
+      "type": "object"
+    },
+    "Evidence": {
+      "properties": {
+        "text": {
+          "description": "Quote or fact supporting the rating",
+          "minLength": 3,
+          "title": "Text",
+          "type": "string"
+        },
+        "source": {
+          "default": "",
+          "description": "Where it came from: cv, reference:<name>, interview, case, thesis",
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "SearcherFacts": {
+      "description": "Deterministic facts the engine can check. No protected attributes belong here.",
+      "properties": {
+        "etas_training": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Etas Training"
+        },
+        "has_partner": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Has Partner"
+        },
+        "full_time": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Full Time"
+        },
+        "personal_runway_months": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Personal Runway Months"
+        },
+        "addressable_universe": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "From thesis builder",
+          "title": "Addressable Universe"
+        },
+        "strengths": {
+          "description": "Operator strengths tags, e.g. sales, ops, pricing, digital",
+          "items": {
+            "type": "string"
+          },
+          "title": "Strengths",
+          "type": "array"
+        },
+        "geographies": {
+          "description": "ISO-like codes the searcher can operate in",
+          "items": {
+            "type": "string"
+          },
+          "title": "Geographies",
+          "type": "array"
+        }
+      },
+      "title": "SearcherFacts",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "searcher_id": {
+      "title": "Searcher Id",
+      "type": "string"
+    },
+    "name": {
+      "title": "Name",
+      "type": "string"
+    },
+    "ratings": {
+      "additionalProperties": {
+        "$ref": "#/$defs/DimensionRating"
+      },
+      "title": "Ratings",
+      "type": "object"
+    },
+    "facts": {
+      "$ref": "#/$defs/SearcherFacts"
+    },
+    "syndicate_capacity_usd_m": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Equity the searcher's investors can fund",
+      "title": "Syndicate Capacity Usd M"
+    },
+    "assessed_by": {
+      "default": "searcher-evaluator-agent",
+      "title": "Assessed By",
+      "type": "string"
+    }
+  },
+  "required": [
+    "searcher_id",
+    "name",
+    "ratings"
+  ],
+  "title": "SearcherAssessment",
+  "type": "object"
+}

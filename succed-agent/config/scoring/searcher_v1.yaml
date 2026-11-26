@@ -1,0 +1,65 @@
+# Searcher & Thesis Score — v1
+# Weights sum to 100. Each dimension is rated 0–5 by the searcher-evaluator agent
+# WITH cited evidence; the engine aggregates deterministically.
+# Partners may tune weights; bump `version` on every change (scores keep the version used).
+version: searcher-v1.0
+scale_max: 5
+
+dimensions:
+  operator_capability:
+    weight: 25
+    label: Operator capability
+    guidance: P&L or team leadership; operating (not only advisory) roles; evidence of hard calls.
+  search_readiness:
+    weight: 15
+    label: Search readiness
+    guidance: ETA course/bootcamp; written 90-day sourcing plan with weekly volumes.
+  thesis_quality:
+    weight: 20
+    label: Thesis quality
+    guidance: Clear criteria; addressable universe >= 300 in band; matches investor preferences.
+  thesis_founder_fit:
+    weight: 10
+    label: Thesis-founder fit
+    guidance: Sector, functional or geographic edge the searcher can articulate.
+  coachability_judgment:
+    weight: 10
+    label: Coachability & judgment
+    guidance: Case exercise + references; responds to feedback; realistic on valuation.
+  network_origination:
+    weight: 10
+    label: Network & origination access
+    guidance: Warm paths to owners, brokers, intermediaries in target markets.
+  commitment_structure:
+    weight: 10
+    label: Commitment & structure
+    guidance: Personal runway, full-time commitment, solo vs partnership plan.
+
+# Deterministic adjustments applied to the 0–5 ratings before weighting.
+adjustments:
+  thesis_quality:
+    universe_min: 300          # fewer addressable targets -> cap rating
+    universe_cap_rating: 2.5
+    universe_max: 20000        # too broad -> cap rating
+    universe_broad_cap_rating: 3.0
+  commitment_structure:
+    min_runway_months: 24
+    low_runway_cap_rating: 2.5
+
+# Evidence rule: a dimension rated without any evidence counts as missing.
+min_evidence_per_dimension: 1
+
+bands:
+  - {min: 80, label: fast_track, action: "Fast-track to partner meeting"}
+  - {min: 70, label: standard_review, action: "Standard review"}
+  - {min: 60, label: coaching_path, action: "Coaching path: re-apply with sharper thesis"}
+  - {min: 0,  label: decline, action: "Decline with written feedback"}
+
+# Never used as model inputs. The engine raises if any of these appear in weights/features.
+protected_attributes: [age, gender, sex, nationality, ethnicity, race, religion, marital_status,
+                       school_prestige, school_name, photo, disability, pregnancy]
+
+in_search:
+  lo_alert_month: 6            # IESE: successful searchers sign first LOI ~month 6
+  min_owner_conversations_per_week: 5
+  min_companies_screened_per_month: 40

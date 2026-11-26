@@ -1,0 +1,93 @@
+{
+  "properties": {
+    "thesis_id": {
+      "title": "Thesis Id",
+      "type": "string"
+    },
+    "searcher_id": {
+      "title": "Searcher Id",
+      "type": "string"
+    },
+    "sectors": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Sectors",
+      "type": "array"
+    },
+    "geographies": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Geographies",
+      "type": "array"
+    },
+    "ev_usd_m": {
+      "default": [
+        10.0,
+        30.0
+      ],
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "title": "Ev Usd M",
+      "type": "array"
+    },
+    "ebitda_usd_m": {
+      "default": [
+        1.5,
+        5.0
+      ],
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "title": "Ebitda Usd M",
+      "type": "array"
+    },
+    "min_recurring_pct": {
+      "default": 0.0,
+      "title": "Min Recurring Pct",
+      "type": "number"
+    },
+    "business_models": {
+      "description": "e.g. b2b_services, saas, distribution",
+      "items": {
+        "type": "string"
+      },
+      "title": "Business Models",
+      "type": "array"
+    },
+    "keywords": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Keywords",
+      "type": "array"
+    },
+    "text": {
+      "default": "",
+      "title": "Text",
+      "type": "string"
+    }
+  },
+  "required": [
+    "thesis_id",
+    "searcher_id"
+  ],
+  "title": "Thesis",
+  "type": "object"
+}

@@ -1,0 +1,83 @@
+[
+  {
+    "_note": "SYNTHETIC demo searcher - fictitious person",
+    "investor_id": "altos-andes",
+    "funded_on": "2026-03-01",
+    "assessment": {
+      "searcher_id": "s-001",
+      "name": "Demo Searcher A",
+      "ratings": {
+        "operator_capability": {"rating": 4, "evidence": [{"text": "Ran a 120-person regional operation with P&L ownership for 3 years", "source": "cv"}]},
+        "search_readiness": {"rating": 4, "evidence": [{"text": "Completed ETA bootcamp; 90-day plan targets 60 owner calls", "source": "thesis"}]},
+        "thesis_quality": {"rating": 4, "evidence": [{"text": "B2B services with multi-year contracts, US and Spain, EBITDA 1.5-5M", "source": "thesis"}]},
+        "thesis_founder_fit": {"rating": 4, "evidence": [{"text": "Eight years in facility services sales leadership", "source": "cv"}]},
+        "coachability_judgment": {"rating": 3.5, "evidence": [{"text": "Revised valuation view after case feedback", "source": "case"}]},
+        "network_origination": {"rating": 3, "evidence": [{"text": "Warm intros to two regional brokers", "source": "reference:broker"}]},
+        "commitment_structure": {"rating": 4, "evidence": [{"text": "Full-time, 30 months personal runway", "source": "interview"}]}
+      },
+      "facts": {"etas_training": true, "has_partner": false, "full_time": true, "personal_runway_months": 30,
+                "addressable_universe": 1200, "strengths": ["sales", "ops", "m&a"], "geographies": ["US", "ES"]},
+      "syndicate_capacity_usd_m": 9.0
+    },
+    "thesis": {
+      "thesis_id": "t-001", "searcher_id": "s-001",
+      "sectors": ["b2b_services", "testing_inspection", "software"], "geographies": ["US", "ES"],
+      "ev_usd_m": [10, 30], "ebitda_usd_m": [1.5, 5.0], "min_recurring_pct": 0,
+      "business_models": ["b2b_services", "testing_inspection", "software"],
+      "keywords": ["contracts", "maintenance", "managed services"],
+      "text": "Recurring B2B services with multi-year contracts in the US and Spain."
+    }
+  },
+  {
+    "_note": "SYNTHETIC demo searcher - fictitious person",
+    "investor_id": "altos-andes",
+    "funded_on": "2026-01-15",
+    "assessment": {
+      "searcher_id": "s-002",
+      "name": "Demo Searcher B",
+      "ratings": {
+        "operator_capability": {"rating": 3.5, "evidence": [{"text": "Plant manager, 2 years; consulting 4 years", "source": "cv"}]},
+        "search_readiness": {"rating": 4, "evidence": [{"text": "Search fund course + structured CRM plan", "source": "thesis"}]},
+        "thesis_quality": {"rating": 3.5, "evidence": [{"text": "Distribution and B2B services in Chile, Mexico, Colombia", "source": "thesis"}]},
+        "thesis_founder_fit": {"rating": 4, "evidence": [{"text": "Supply-chain background across Pacific Alliance", "source": "cv"}]},
+        "coachability_judgment": {"rating": 4, "evidence": [{"text": "References describe strong response to feedback", "source": "reference:former_manager"}]},
+        "network_origination": {"rating": 4, "evidence": [{"text": "Active in two industry associations", "source": "interview"}]},
+        "commitment_structure": {"rating": 3.5, "evidence": [{"text": "Full-time with a partner joining in Q2", "source": "interview"}]}
+      },
+      "facts": {"etas_training": true, "has_partner": true, "full_time": true, "personal_runway_months": 26,
+                "addressable_universe": 650, "strengths": ["ops", "digital", "pricing"], "geographies": ["CL", "MX", "CO", "PE"]},
+      "syndicate_capacity_usd_m": 7.0
+    },
+    "thesis": {
+      "thesis_id": "t-002", "searcher_id": "s-002",
+      "sectors": ["distribution", "b2b_services"], "geographies": ["CL", "MX", "CO", "PE"],
+      "ev_usd_m": [8, 25], "ebitda_usd_m": [1.2, 4.0], "min_recurring_pct": 0,
+      "business_models": ["distribution", "b2b_services"], "keywords": ["distribution", "services"],
+      "text": "Asset-light distribution and B2B services in the Pacific Alliance."
+    }
+  },
+  {
+    "_note": "SYNTHETIC demo searcher - fictitious person; illustrates the coaching path",
+    "investor_id": "altos-andes",
+    "assessment": {
+      "searcher_id": "s-003",
+      "name": "Demo Searcher C",
+      "ratings": {
+        "operator_capability": {"rating": 2.5, "evidence": [{"text": "Advisory roles only; no direct reports", "source": "cv"}]},
+        "search_readiness": {"rating": 3, "evidence": [{"text": "Attended ETA conference; plan not yet written", "source": "interview"}]},
+        "thesis_quality": {"rating": 4, "evidence": [{"text": "Niche: marine equipment maintenance in Uruguay", "source": "thesis"}]},
+        "thesis_founder_fit": {"rating": 3, "evidence": [{"text": "Sailing hobby; no industry experience", "source": "interview"}]},
+        "coachability_judgment": {"rating": 3, "evidence": [{"text": "Mixed reference feedback", "source": "reference:peer"}]},
+        "network_origination": {"rating": 2},
+        "commitment_structure": {"rating": 3, "evidence": [{"text": "Wants to search part-time initially", "source": "interview"}]}
+      },
+      "facts": {"etas_training": false, "full_time": false, "personal_runway_months": 12, "addressable_universe": 80,
+                "strengths": ["digital"], "geographies": ["UY"]},
+      "syndicate_capacity_usd_m": 3.0
+    },
+    "thesis": {
+      "thesis_id": "t-003", "searcher_id": "s-003", "sectors": ["marine_services"], "geographies": ["UY"],
+      "ev_usd_m": [5, 15], "ebitda_usd_m": [1.0, 3.0], "text": "Marine equipment maintenance in Uruguay."
+    }
+  }
+]

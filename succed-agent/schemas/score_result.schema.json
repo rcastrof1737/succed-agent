@@ -1,0 +1,142 @@
+{
+  "$defs": {
+    "DimensionResult": {
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "weight": {
+          "title": "Weight",
+          "type": "number"
+        },
+        "raw": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Raw"
+        },
+        "points": {
+          "title": "Points",
+          "type": "number"
+        },
+        "note": {
+          "default": "",
+          "title": "Note",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "weight",
+        "raw",
+        "points"
+      ],
+      "title": "DimensionResult",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "subject_id": {
+      "title": "Subject Id",
+      "type": "string"
+    },
+    "kind": {
+      "title": "Kind",
+      "type": "string"
+    },
+    "score": {
+      "title": "Score",
+      "type": "number"
+    },
+    "band": {
+      "default": "",
+      "title": "Band",
+      "type": "string"
+    },
+    "action": {
+      "default": "",
+      "title": "Action",
+      "type": "string"
+    },
+    "confidence_halfwidth": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Confidence Halfwidth"
+    },
+    "low_confidence": {
+      "default": false,
+      "title": "Low Confidence",
+      "type": "boolean"
+    },
+    "dimensions": {
+      "items": {
+        "$ref": "#/$defs/DimensionResult"
+      },
+      "title": "Dimensions",
+      "type": "array"
+    },
+    "knockouts": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Knockouts",
+      "type": "array"
+    },
+    "route": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Route"
+    },
+    "reasons": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+    },
+    "warnings": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Warnings",
+      "type": "array"
+    },
+    "config_version": {
+      "title": "Config Version",
+      "type": "string"
+    },
+    "computed_at": {
+      "format": "date-time",
+      "title": "Computed At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "subject_id",
+    "kind",
+    "score",
+    "config_version"
+  ],
+  "title": "ScoreResult",
+  "type": "object"
+}

@@ -1,0 +1,25 @@
+# Investor profile — criteria as PUBLISHED on altosandescapital.com (read 2026-11-26).
+# Anything not published is marked `hypothesis: true` and must be confirmed with the partners.
+id: altos-andes
+name: Altos Andes Capital
+hq: Santiago, Chile
+geographies: [US, ES, EU, CL, MX, CO, PE, AR, UY]   # US & Europe core; LatAm selective
+geography_priority: {US: 1.0, EU: 1.0, ES: 1.0, CL: 0.7, MX: 0.7, CO: 0.7, PE: 0.6, AR: 0.5, UY: 0.6}
+target_ev_usd_m: [10, 30]
+sector_agnostic: true
+prefers:
+  - profitable, stable cash flow
+  - low capital intensity
+  - growing industries the team understands
+  - recurring customers
+  - defensible competitive position
+  - operation a new CEO can learn and improve
+avoids:
+  - distressed companies
+  - start-ups without profit history
+  - heavily regulated industries
+  - dependence on a single customer or on the owner
+activities: [search_capital, acquisition_coinvestment, board_seats]
+# --- hypotheses (not published) ---
+ebitda_band_usd_m: {value: [1.5, 5.0], hypothesis: true}
+max_equity_check_usd_m: {value: 6.0, hypothesis: true}
